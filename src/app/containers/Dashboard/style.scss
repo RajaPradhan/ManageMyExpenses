@@ -1,0 +1,22 @@
+.headers {
+  color: rgb(158, 158, 158);
+  font-family: Roboto, sans-serif;
+  line-height: 0.9em;
+  font-size: 1.5em;
+}
+
+.dashboard-left-section {
+  width: 48%;
+  float: left;
+}
+
+.dashboard-right-section {
+  width: 45%;
+  float: right;
+}
+
+.donutChart-container {
+  height: 350px;
+  margin-top: 63px;
+  border: 1px solid;
+}
