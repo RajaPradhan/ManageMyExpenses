@@ -21,7 +21,7 @@ export default class DonutChart extends Component {
   renderDonutChart() {
     this.svgContainer = select(document.getElementById('donuChartSvgContainer'));
     this.svgContainer.select('.donutG').remove();
-    
+
     const color = scaleOrdinal(schemeCategory10);
 
     const arc = shape.arc()
@@ -32,7 +32,7 @@ export default class DonutChart extends Component {
       .classed("donutG", true)
       .attr("transform", "translate(" + 230 + "," + 170 + ")")
 
-    const arcs = shape.pie()(this.props.data);
+    const arcs = shape.pie().value((d) => { return d.total; })(this.props.data);
 
     arcs.forEach(function(d, i) {
       group.append("path")
@@ -47,12 +47,43 @@ export default class DonutChart extends Component {
         };
       })
     });
+
+    // Create the legend
+    console.log('data', this.props.data);
+    const legendG = this.svgContainer.selectAll(".legend")
+      .data(this.props.data)
+      .enter()
+      .append("g")
+      .attr("transform", (d, i) => {
+        return "translate(" + 450 + "," + (i * 40 + 100) + ")";
+      })
+      .classed("legend", true);
+
+    legendG.append("rect")
+      .attr("width", 30)
+      .attr("height", 30)
+      .attr("fill", function(d, i) {
+        return color(i);
+      });
+
+    legendG.append("text")
+      .text(function(d){
+        return `${d._id} ($${d.total})`;
+      })
+      .style("font-size", '1em')
+      .style("font-family", "Roboto, sans-serif")
+      .attr("y", 20)
+      .attr("x", 40);
   }
 
   render() {
     return (
-      <svg width="100%" height="350" style={{border: '1px solid'}} id="donuChartSvgContainer">
-      </svg>
+      <svg
+        width="100%"
+        height="350"
+        style={{border: '1px solid'}}
+        id="donuChartSvgContainer"
+      />
     );
   }
 }

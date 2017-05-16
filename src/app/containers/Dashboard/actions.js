@@ -67,3 +67,18 @@ export const fetchTotalExpensesForAllMonths = (userId) => {
     .catch();
   };
 };
+
+export const fetchCategoryWiseExpenseForAMonth = (userId, month) => {
+  return (dispatch) => {
+    axios.get(`${API_BASE_URL}/analytics/expenses/category/${userId}/${month}`)
+    .then(response => {
+      if(response.data.result.length) {
+        dispatch({
+          type: t.SET_CATEGORY_WISE_EXPENSE_FOR_A_MONTH,
+          payload: response.data.result
+        });
+      }
+    })
+    .catch();
+  };
+};

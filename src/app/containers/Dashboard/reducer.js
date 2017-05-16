@@ -3,7 +3,8 @@ import * as t from './actionTypes';
 const initialState = {
   monthlyExpenseDetails: [],
   totalExpensesForAllMonths: [],
-  totalAmountForCurrentMonth: 0
+  totalAmountForCurrentMonth: 0,
+  categoryWiseExpenseForAMonth: [],
 };
 
 export default function(state = initialState, action) {
@@ -26,6 +27,11 @@ export default function(state = initialState, action) {
     case t.SET_TOTAL_AMOUNT_FOR_CURRENT_MONTH:
       return Object.assign({}, state, {
         totalAmountForCurrentMonth: action.payload
+      });
+
+    case t.SET_CATEGORY_WISE_EXPENSE_FOR_A_MONTH:
+      return Object.assign({}, state, {
+        categoryWiseExpenseForAMonth: action.payload
       });
 
     default:

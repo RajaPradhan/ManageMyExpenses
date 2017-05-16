@@ -136,14 +136,18 @@ export default class BarChart extends Component {
         .attr("y", (d) => { return (this.svgContainerdimensions.height - this.yScale(d.total)) - 20;})
         .attr("dy", ".35em") //vertical align middle
         .text(function(d){
-            return d.total;
+            return '$' + d.total;
         })
   }
 
   render() {
     return (
-      <svg width="100%" height="350" style={{border: '1px solid'}} id="barChartSvgContainer">
-      </svg>
+      <svg
+        width="100%"
+        height="350"
+        style={{border: '1px solid'}}
+        id="barChartSvgContainer"
+      />
     );
   }
 }

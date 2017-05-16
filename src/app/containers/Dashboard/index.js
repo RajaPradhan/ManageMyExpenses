@@ -44,6 +44,7 @@ class Dashboard extends Component {
     this.createMenuItemsForCategory();
     this.props.fetchMonthlyExpenseDetails(userId, month.toLowerCase());
     this.props.fetchTotalExpensesForAllMonths(userId);
+    this.props.fetchCategoryWiseExpenseForAMonth(userId, month.toLowerCase());
   }
 
   createMenuItemsForCategory() {
@@ -148,7 +149,7 @@ class Dashboard extends Component {
           <Divider />
           <div className={styles['donutChart-container']}>
             <DonutChart
-              data={[1, 2, 1, 5, 6, 8, 10]}
+              data={this.props.dashboard.categoryWiseExpenseForAMonth}
             />
           </div>
         </div>
