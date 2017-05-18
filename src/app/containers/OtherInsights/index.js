@@ -1,11 +1,42 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-export default class OtherInsights extends Component {
+import otherInsightsExports from './exports';
+
+import DonutChart from 'appPath/components/DonutChart';
+
+import helpers from 'appPath/helpers';
+
+import styles from './style.scss';
+
+class OtherInsights extends Component {
   constructor(props) {
     super(props);
   }
 
+  componentWillMount() {
+    const userId = '591820b2f1db145b4bdabf5d';
+    const month = helpers.getCurrentMonth();
+    this.props.fetchCategoryWiseExpenseForAllMonths(userId);
+  }
+
   render() {
-    return <h1>OtherInsights</h1>;
+    return (
+      <div id="other-insights-container">
+        <div className={styles['middle-section']}>
+          <div className={styles['donutChart-container']}>
+            <DonutChart
+              data={this.props.otherInsights.categoryWiseExpenseForAllMonths}
+            />
+          </div>
+        </div>
+      </div>
+    );
   }
 }
+
+function mapStateToProps(state) {
+  return  {otherInsights: state.dashboard}
+}
+
+export default connect(mapStateToProps, otherInsightsExports.actions.default)(OtherInsights);

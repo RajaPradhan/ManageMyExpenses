@@ -5,6 +5,7 @@ const initialState = {
   totalExpensesForAllMonths: [],
   totalAmountForCurrentMonth: 0,
   categoryWiseExpenseForAMonth: [],
+  categoryWiseExpenseForAllMonths: [],
 };
 
 export default function(state = initialState, action) {
@@ -32,6 +33,11 @@ export default function(state = initialState, action) {
     case t.SET_CATEGORY_WISE_EXPENSE_FOR_A_MONTH:
       return Object.assign({}, state, {
         categoryWiseExpenseForAMonth: action.payload
+      });
+
+    case t.SET_CATEGORY_WISE_EXPENSE_FOR_ALL_MONTHS:
+      return Object.assign({}, state, {
+        categoryWiseExpenseForAllMonths: action.payload
       });
 
     default:
