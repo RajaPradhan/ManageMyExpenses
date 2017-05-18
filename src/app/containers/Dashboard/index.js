@@ -87,7 +87,7 @@ class Dashboard extends Component {
   render() {
     const sortedDataByMonth = helpers.sortByMonth(this.props.dashboard.totalExpensesForAllMonths);
     return (
-      <div>
+      <div id="dashboard-container">
         <div className={styles['dashboard-left-section']}>
           <DataGrid
             data={this.props.dashboard.monthlyExpenseDetails}

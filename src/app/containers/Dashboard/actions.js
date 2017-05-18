@@ -19,6 +19,7 @@ export const fetchMonthlyExpenseDetails = (userId, month) => {
           type: t.SET_MONTHLY_EXPENSE_DETAILS,
           payload: monthlyExpenseDetails
         });
+        dispatch(fetchTotalExpensesForAllMonths(userId, month));
       }
     })
     .catch(error => {
@@ -43,7 +44,7 @@ export const addExpense = (expenseDetails) => {
   };
 };
 
-export const fetchTotalExpensesForAllMonths = (userId) => {
+export const fetchTotalExpensesForAllMonths = (userId, month) => {
   return (dispatch) => {
     axios.get(`${API_BASE_URL}/analytics/expenses/${userId}`)
     .then(response => {
@@ -54,7 +55,7 @@ export const fetchTotalExpensesForAllMonths = (userId) => {
         });
 
         const totalAmountForCurrentMonth = _.find(response.data.result, {
-          _id: helpers.getCurrentMonth().toLowerCase()
+          _id: month ? month : helpers.getCurrentMonth().toLowerCase()
         });
         if(totalAmountForCurrentMonth) {
           dispatch({

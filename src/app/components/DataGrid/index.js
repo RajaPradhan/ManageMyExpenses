@@ -24,7 +24,7 @@ export default class DataGrid extends Component {
     const currentMonth = helpers.getCurrentMonth();
 
     return (
-      <div>
+      <div id="datagrid-container">
         <Table
           height="300px"
           fixedHeader

@@ -19,8 +19,10 @@ export default class DonutChart extends Component {
   }
 
   renderDonutChart() {
-    this.svgContainer = select(document.getElementById('donuChartSvgContainer'));
+    console.log('renderDonutChart', this.props.data.length);
+    this.svgContainer = select(document.getElementsByClassName('donutChartSvgContainer')[0]);
     this.svgContainer.select('.donutG').remove();
+    this.svgContainer.selectAll('.legendG').remove();
 
     const color = scaleOrdinal(schemeCategory10);
 
@@ -49,15 +51,15 @@ export default class DonutChart extends Component {
     });
 
     // Create the legend
-    console.log('data', this.props.data);
-    const legendG = this.svgContainer.selectAll(".legend")
+    const legendG = this.svgContainer.selectAll(".legendG")
       .data(this.props.data)
       .enter()
       .append("g")
+      .classed("legendG", true)
       .attr("transform", (d, i) => {
         return "translate(" + 450 + "," + (i * 40 + 100) + ")";
       })
-      .classed("legend", true);
+      //.classed("legend", true);
 
     legendG.append("rect")
       .attr("width", 30)
@@ -82,7 +84,7 @@ export default class DonutChart extends Component {
         width="100%"
         height="350"
         style={{border: '1px solid'}}
-        id="donuChartSvgContainer"
+        className="donutChartSvgContainer"
       />
     );
   }

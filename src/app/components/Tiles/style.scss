@@ -1,0 +1,17 @@
+.tile {
+  width: 10em;
+  height: 10em;
+  background: #00BCD4;
+  margin: 5px 5px 5px 0px;
+  float: left;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Roboto, sans-serif;
+  color: #FFF;
+
+  &:hover {
+    background: #0d6672;
+    cursor: pointer;
+  }
+}
