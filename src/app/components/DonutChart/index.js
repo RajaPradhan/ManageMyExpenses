@@ -19,7 +19,6 @@ export default class DonutChart extends Component {
   }
 
   renderDonutChart(nextProps) {
-    console.log('renderDonutChart', nextProps.data.length);
     this.svgContainer = select(document.getElementsByClassName('donutChartSvgContainer')[0]);
     this.svgContainer.select('.donutG').remove();
     this.svgContainer.selectAll('.legendG').remove();
