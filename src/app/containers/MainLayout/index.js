@@ -17,6 +17,10 @@ export default class MainLayout extends Component {
     browserHistory.push(dataRoute);
   }
 
+  getActiveTab() {
+    return window.location.pathname;
+  }
+
   render() {
     return (
       <div>
@@ -34,7 +38,7 @@ export default class MainLayout extends Component {
               data-route="/dashboard"
               onActive={this.handleTabChange}
             >
-              {this.props.children}
+              {this.getActiveTab() === '/dashboard' && this.props.children}
             </Tab>
 
             <Tab
@@ -42,14 +46,14 @@ export default class MainLayout extends Component {
               data-route="/monthly-insights"
               onActive={this.handleTabChange}
             >
-              {this.props.children}
+              {this.getActiveTab() === '/monthly-insights' && this.props.children}
             </Tab>
 
             <Tab label="Other Insights"
               data-route="/other-insights"
               onActive={this.handleTabChange}
             >
-              {this.props.children}
+              {this.getActiveTab() === '/other-insights' && this.props.children}
             </Tab>
           </Tabs>
         </MuiThemeProvider>
