@@ -17,7 +17,21 @@ export default class MainLayout extends Component {
     browserHistory.push(dataRoute);
   }
 
-  getActiveTab() {
+  getInitialSelectedIndex() {
+    const pathname = window.location.pathname;
+
+    if(pathname === '/dashboard') {
+      return 0;
+    } else if(pathname === '/monthly-insights') {
+      return 1;
+    } else if(pathname === '/other-insights') {
+      return 2;
+    } else {
+      return 0;
+    }
+  }
+
+  getActiveTabPathname() {
     return window.location.pathname;
   }
 
@@ -32,13 +46,15 @@ export default class MainLayout extends Component {
         </MuiThemeProvider>
 
         <MuiThemeProvider>
-          <Tabs>
+          <Tabs
+            initialSelectedIndex={this.getInitialSelectedIndex()}
+          >
             <Tab
               label="Dashboard"
               data-route="/dashboard"
               onActive={this.handleTabChange}
             >
-              {this.getActiveTab() === '/dashboard' && this.props.children}
+              {this.getActiveTabPathname() === '/dashboard' && this.props.children}
             </Tab>
 
             <Tab
@@ -46,14 +62,15 @@ export default class MainLayout extends Component {
               data-route="/monthly-insights"
               onActive={this.handleTabChange}
             >
-              {this.getActiveTab() === '/monthly-insights' && this.props.children}
+              {this.getActiveTabPathname() === '/monthly-insights' && this.props.children}
             </Tab>
 
-            <Tab label="Other Insights"
+            <Tab
+              label="Other Insights"
               data-route="/other-insights"
               onActive={this.handleTabChange}
             >
-              {this.getActiveTab() === '/other-insights' && this.props.children}
+              {this.getActiveTabPathname() === '/other-insights' && this.props.children}
             </Tab>
           </Tabs>
         </MuiThemeProvider>

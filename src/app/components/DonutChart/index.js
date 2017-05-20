@@ -14,12 +14,12 @@ export default class DonutChart extends Component {
 
   componentWillReceiveProps(nextProps) {
     if(nextProps.data.length) {
-      this.renderDonutChart();
+      this.renderDonutChart(nextProps);
     }
   }
 
-  renderDonutChart() {
-    console.log('renderDonutChart', this.props.data.length);
+  renderDonutChart(nextProps) {
+    console.log('renderDonutChart', nextProps.data.length);
     this.svgContainer = select(document.getElementsByClassName('donutChartSvgContainer')[0]);
     this.svgContainer.select('.donutG').remove();
     this.svgContainer.selectAll('.legendG').remove();
@@ -34,7 +34,7 @@ export default class DonutChart extends Component {
       .classed("donutG", true)
       .attr("transform", "translate(" + 230 + "," + 170 + ")")
 
-    const arcs = shape.pie().value((d) => { return d.total; })(this.props.data);
+    const arcs = shape.pie().value((d) => { return d.total; })(nextProps.data);
 
     arcs.forEach(function(d, i) {
       group.append("path")
@@ -52,7 +52,7 @@ export default class DonutChart extends Component {
 
     // Create the legend
     const legendG = this.svgContainer.selectAll(".legendG")
-      .data(this.props.data)
+      .data(nextProps.data)
       .enter()
       .append("g")
       .classed("legendG", true)

@@ -18,6 +18,7 @@ class OtherInsights extends Component {
     const userId = '591820b2f1db145b4bdabf5d';
     const month = helpers.getCurrentMonth();
     this.props.fetchCategoryWiseExpenseForAllMonths(userId);
+    //this.props.fetchTotalExpensesForAllMonths(userId);
   }
 
   render() {
