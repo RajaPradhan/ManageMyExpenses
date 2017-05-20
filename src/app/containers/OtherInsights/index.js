@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import otherInsightsExports from './exports';
+import * as actions from 'appPath/actions';
 
 import DonutChart from 'appPath/components/DonutChart';
 
@@ -36,7 +36,7 @@ class OtherInsights extends Component {
 }
 
 function mapStateToProps(state) {
-  return  {otherInsights: state.dashboard}
+  return  {otherInsights: state}
 }
 
-export default connect(mapStateToProps, otherInsightsExports.actions.default)(OtherInsights);
+export default connect(mapStateToProps, actions)(OtherInsights);

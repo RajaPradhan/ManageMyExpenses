@@ -7,13 +7,13 @@ import reduxThunk from 'redux-thunk';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
-import rootReducer from './rootReducer';
+import reducer from './reducer';
 
 // Import the Router
 import Router from './router';
 
 const createStoreWithMiddleware = applyMiddleware(reduxThunk)(createStore);
-const store = createStoreWithMiddleware(rootReducer);
+const store = createStoreWithMiddleware(reducer);
 
 ReactDOM.render(
   <Provider store={store}>

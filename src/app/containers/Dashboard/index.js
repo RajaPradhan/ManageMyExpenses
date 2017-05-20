@@ -11,8 +11,8 @@ import SelectField from 'material-ui/SelectField';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import * as actions from 'appPath/actions';
 import helpers from 'appPath/helpers';
-import dashboardExports from './exports';
 import DataGrid from 'appPath/components/DataGrid';
 import BarChart from 'appPath/components/BarChart';
 import DonutChart from 'appPath/components/DonutChart';
@@ -159,7 +159,7 @@ class Dashboard extends Component {
 }
 
 function mapStateToProps(state) {
-  return {dashboard: state.dashboard};
+  return {dashboard: state};
 }
 
-export default connect(mapStateToProps, dashboardExports.actions)(Dashboard);
+export default connect(mapStateToProps, actions)(Dashboard);

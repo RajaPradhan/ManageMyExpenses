@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import monthlyInsightsExports from './exports';
+import * as actions from 'appPath/actions';
 
 import Divider from 'material-ui/Divider';
 
@@ -21,7 +21,6 @@ class MonthlyInsights extends Component {
   }
 
   componentWillMount() {
-    console.log('gdgdgddg');
     const userId = '591820b2f1db145b4bdabf5d';
     const month = helpers.getCurrentMonth();
     this.props.fetchMonthlyExpenseDetails(userId, month.toLowerCase());
@@ -65,7 +64,7 @@ class MonthlyInsights extends Component {
 }
 
 function mapStateToProps(state) {
-  return  {monthlyInsights: state.dashboard}
+  return  {monthlyInsights: state}
 }
 
-export default connect(mapStateToProps, monthlyInsightsExports.actions.default)(MonthlyInsights);
+export default connect(mapStateToProps, actions)(MonthlyInsights);
