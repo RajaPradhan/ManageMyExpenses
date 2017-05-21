@@ -4,8 +4,8 @@
   "description": "A modern SPA built using React, Redux, Express, MongoDB to manage and provide insight into a user's monthly expenditure.",
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "webpack -p && webpack-dev-server",
-    "test": "mocha test/.setup.js test/**/*-test.js"
+    "build": "webpack -p",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
