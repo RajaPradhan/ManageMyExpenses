@@ -33,7 +33,7 @@ module.exports = {
   resolve: {
     alias: {
       root: path.resolve(__dirname),
-      appPath: path.resolve(__dirname, 'src', 'app')
+      appPath: path.resolve(__dirname, 'src')
     }
   },
 
@@ -85,7 +85,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       // Required
       inject: false,
-      template: './src/app/index.ejs',
+      template: './src/index.ejs',
 
       minify: {
         collapseWhitespace: true,
